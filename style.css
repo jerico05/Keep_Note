@@ -1,0 +1,72 @@
+
+.page-contenu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-contenu{
+    background-color: brown;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    width: 650px;
+    height: 300px;
+    padding-bottom: 20px;
+}
+.form-contenu textarea{
+    width: 600px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+}
+.bouton-contenu{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 400px;
+}
+.bouton-contenu button{
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+}
+
+#titre-contenu{
+    height: 50px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+#note-contenu{
+    height: 150px;
+    font-size: 16px;
+}
+
+#historique-contenu{
+    background-color: rosybrown;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    align-content: start;  
+    align-items: start;     
+    width: 670px;
+}
+#historique-contenu h1{
+    color: white;
+    text-align: center;
+}
+
+.note-historique{
+    background-color: brown;
+    margin: 10px;
+    padding: 10px;
+    width: 180px;
+    height: 180px;
+}
+.note-historique h3,p{
+    color: white;
+}
