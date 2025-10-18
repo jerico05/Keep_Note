@@ -5,10 +5,13 @@ const contenuEntre = document.getElementById("note-contenu");
 const contenuHistorique = document.getElementById("historique-contenu")
 const boutonEnregister = document.getElementById("bouton-enregistrer");
 const boutonHistorique = document.getElementById("bouton-historique");
+const boutonModifier = document.getElementById("bouton-modifier");
+const boutonSupprimer = document.getElementById("bouton-supprimer");
 
 
 //const local = JSON.parse(localStorage.getItem("notes"));
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
+let noteAmodifier = null;
 
 //console.log(contenuHistorique);
 
@@ -19,7 +22,7 @@ boutonEnregister.addEventListener("click", function() {
         contenu: contenuEntre.value
     }*/
 
-    const titre = titreEntre.value.trim();
+    /*const titre = titreEntre.value.trim();
     const contenu = contenuEntre.value.trim()
     if(titre && contenu){
         nouvelleNote = {titre, contenu};
@@ -37,7 +40,8 @@ boutonEnregister.addEventListener("click", function() {
 
     }else{
         alert ("Veuillez remplir tous les champs !");
-    }
+    }*/
+    enregistrerNote();
 },false);
 
 boutonHistorique.addEventListener("click", function(){
@@ -57,7 +61,45 @@ function afficherNotes(){
             <div class="note-historique">
                 <h3>${note.titre}</h3>
                 <p>${note.contenu}</p>
+                <button onclick="modifierNote(${index})">Modifier</button>
+                <button onclick="supprimerNote(${index})">Supprimer</button>
             </div>`;
     }); 
  }
+
+enregistrerNote = function(index){
+    const titre = titreEntre.value.trim();
+    const contenu = contenuEntre.value.trim();
+
+    if(!titre || !contenu){
+        alert("Veuillez remplir tous les champs !");
+        return;
+    } else if(noteAmodifier !== null){
+        notes[noteAmodifier] = {titre, contenu};
+        noteAmodifier = null;
+    } else {
+        notes.push({titre, contenu});
+    }
+    localStorage.setItem("notes", JSON.stringify(notes));
+    alert("Note enregistrée !");
+    afficherNotes();
+    titreEntre.value = "";
+    contenuEntre.value = "";
+}
+
+modifierNote = function(index){
+    const note = notes[index];
+    titreEntre.value = note.titre;
+    contenuEntre.value = note.contenu;
+    noteAmodifier = index;
+}
+
+supprimerNote = function(index){
+    if(confirm("Êtes-vous sûr de vouloir supprimer cette note ?")){
+        notes.splice(index, 1);
+        localStorage.setItem("notes", JSON.stringify(notes));
+        alert("Note supprimée !");
+        afficherNotes();
+    }
+}
     
